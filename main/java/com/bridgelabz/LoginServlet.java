@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
         urlPatterns = {"/LoginServlet"},
         initParams = {
                 @WebInitParam(name = "user", value = "Srinivas"),
-                @WebInitParam(name = "password", value = "123456")
+                @WebInitParam(name = "password", value = "srinIvas@6086")
         }
 )
 public class LoginServlet extends HttpServlet {
@@ -27,6 +27,7 @@ public class LoginServlet extends HttpServlet {
         String userId = getServletConfig().getInitParameter("user");
         String password = getServletConfig().getInitParameter("password");
         if (Pattern.matches("[A-Z][a-z]{2,}", userId) &&
+                Pattern.matches("(?=.*?[A-Z])(?=.*?\\d)(?=.*?[a-z])(?=.*?[!@#$%^&*_()+-])[A-Za-z\\d!@#$%^&()*+_-]{8,}", password) &&
                 userId.equals(user) && password.equals(pwd)) {
             request.setAttribute("user", user);
             request.getRequestDispatcher("LoginSuccess.jsp").forward(request, response);
